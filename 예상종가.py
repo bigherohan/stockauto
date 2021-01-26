@@ -9,7 +9,7 @@ if (bConnect == 0):
  
 # 현재가 객체 구하기
 objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
-objStockMst.SetInputValue(0, 'A005930')   #종목 코드 - 삼성전자
+objStockMst.SetInputValue(0, "A124560")   #종목 코드 - 삼성전자
 objStockMst.BlockRequest()
 
  

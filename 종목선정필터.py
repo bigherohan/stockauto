@@ -4,6 +4,7 @@
 
 
 import win32com.client
+
  
  
 # 연결 여부 체크
@@ -18,9 +19,9 @@ objCpCodeMgr = win32com.client.Dispatch("CpUtil.CpCodeMgr")
 codeList = objCpCodeMgr.GetStockListByMarket(1) #거래소
 codeList2 = objCpCodeMgr.GetStockListByMarket(2) #코스닥
 
-print(type(codeList)) 
+#print(type(codeList)) 
 
-print("거래소 종목코드", len(codeList))
+#print("거래소 종목코드", len(codeList))
 for i, code in enumerate(codeList):
     secondCode = objCpCodeMgr.GetStockSectionKind(code)
     name = objCpCodeMgr.CodeToName(code)
@@ -39,7 +40,7 @@ for i, code in enumerate(codeList2):
 
 
 
-getcode = ["A244670","A244920","A245340","A245350","A245360"]
+getcode = ['A005950',"A267320","A124560","A005935","A102460","A055550","A024880","A179290","A067010","A005950","A013810","A046120","A080720"]
 buycode = []
 sellcode = []
 # for code in codeList:
@@ -58,7 +59,7 @@ sellcode = []
 #getcode 에서 하나씩 꺼내와서 i 에 넣은 후 예상종가,내일예상종가를 받아야된다
 
 for i in getcode:
-    print(i)
+    print(i,name)
     # 현재가 객체 구하기
     objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
     objStockMst.SetInputValue(0, i)   #종목 코드 - 삼성전자
@@ -67,7 +68,7 @@ for i in getcode:
     #현재가 통신 및 통신 에러 처리 
     rqStatus = objStockMst.GetDibStatus()
     rqRet = objStockMst.GetDibMsg1()
-    print("통신상태", rqStatus, rqRet)
+    #print("통신상태", rqStatus, rqRet)
     if rqStatus != 0:
         exit()
     # 현재가 정보 조회
@@ -132,8 +133,6 @@ for i in getcode:
         sellcode.append(code) #매도종목
     #print(i, code)
 
-print(buycode)
-print(sellcode)
+print("매수종목코드" + str(buycode))
+print("매도종목코드" + str(sellcode))
 
-#커밋 테스트
-#커밋 테스트2
